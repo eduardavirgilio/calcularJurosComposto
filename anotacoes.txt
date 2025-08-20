@@ -1,0 +1,10 @@
+excel dos casos de teste - casos_teste.xlsx
+pdf do html - doc_teste.pdf
+no teste de cobertura (clica no nome do arquivo e baixa em pdf) - doc_teste_cobertura.pdf
+arquivo que fez o teste - test_juros_compostos.py
+
+run_pytest.ps1
+
+python -m pytest --html=escola/doc_testes.html
+
+python -m pytest --cov=escola --cov-report=html
