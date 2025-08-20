@@ -1,0 +1,83 @@
+import pytest
+from juros_composto import calcular_juros_compostos
+
+# passando os parametros
+@pytest.mark.parametrize("capital, juros, tempo, situacao_esperada",
+                         [
+                             (1000, 20, 1, (200, 1200)),
+                             (1000, 30, 1, (300, 1300))
+                         ])
+
+
+def test_calcular_juros_parametrizados(capital, juros, tempo, situacao_esperada):
+    resultado = calcular_juros_compostos(capital, juros, tempo)
+
+    assert resultado == situacao_esperada
+
+# testando os erros
+
+# vendo se é numero negativo
+def test_capital_negativa():
+    # Definindo a entrada
+    capital = -1000.00
+    juros = 40
+    tempo = 2
+
+    # Executando a função e esperando erro
+    with pytest.raises(ValueError, match="O capital investido não pode ser negativo."):
+        calcular_juros_compostos(capital, juros, tempo) 
+
+# vendo se é numero negativo
+def test_juros_negativo():
+    # Definindo a entrada
+    capital = 1000.00
+    juros = -40
+    tempo = 2
+
+    # Executando a função e esperando erro
+    with pytest.raises(ValueError, match="A taxa de juros não pode ser negativa."):
+        calcular_juros_compostos(capital, juros, tempo) 
+
+# vendo se é numero negativo
+def test_tempo_negativo():
+    # Definindo a entrada
+    capital = 1000.00
+    juros = 40
+    tempo = -2
+
+    # Executando a função e esperando erro
+    with pytest.raises(ValueError, match="O tempo não pode ser negativo."):
+        calcular_juros_compostos(capital, juros, tempo) 
+
+# vendo se o capital é uma str
+def test_string_capital():
+    # Definindo a entrada
+    capital = "alex te amo"
+    juros = 10
+    tempo = 5
+
+    # Executando a função e esperando erro
+    with pytest.raises(TypeError, match="O capital investido deve ser um número (int ou float)."):
+        calcular_juros_compostos(capital, juros, tempo) 
+
+# vendo se o juros é uma str
+def test_string_juros():
+    # Definindo a entrada
+    capital = 1000
+    juros = "banana"
+    tempo = 5
+
+    # Executando a função e esperando erro
+    with pytest.raises(TypeError, match="A taxa de juros deve ser um número (int ou float)."):
+        calcular_juros_compostos(capital, juros, tempo) 
+
+# vendo se o tempo é uma str
+def test_string_juros():
+    # Definindo a entrada
+    capital = 1000
+    juros = 10
+    tempo = "ola"
+
+    # Executando a função e esperando erro
+    with pytest.raises(TypeError, match="O tempo deve ser um número (int ou float)."):
+        calcular_juros_compostos(capital, juros, tempo) 
