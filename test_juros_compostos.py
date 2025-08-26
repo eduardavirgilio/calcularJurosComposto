@@ -94,7 +94,7 @@ def test_menos_de_tres_valores_tempo():
 
     # Executando a função e esperando erro
     with pytest.raises(TypeError, match="Não é permitido enviar menos que 3 valores"):
-        calcular_juros_compostos(capital, juros)
+        calcular_juros_compostos(capital, juros, None)
 
 # vendo se foi enviado menos de 3 valores
 def test_menos_de_tres_valores_capital():
@@ -104,7 +104,7 @@ def test_menos_de_tres_valores_capital():
 
     # Executando a função e esperando erro
     with pytest.raises(TypeError, match="Não é permitido enviar menos que 3 valores"):
-        calcular_juros_compostos(juros, tempo)
+        calcular_juros_compostos(None, juros, tempo)
 
 # vendo se foi enviado menos de 3 valores
 def test_menos_de_tres_valores_juros():
@@ -114,4 +114,4 @@ def test_menos_de_tres_valores_juros():
 
     # Executando a função e esperando erro
     with pytest.raises(TypeError, match="Não é permitido enviar menos que 3 valores"):
-        calcular_juros_compostos(capital, tempo)
+        calcular_juros_compostos(capital, None, tempo)
